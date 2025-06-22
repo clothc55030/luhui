@@ -1,4 +1,4 @@
-# 蘆薈莊園民宿官網
+# 蘆薈Villa民宿官網
 
 > 宜蘭五結清水模工業風民宿官方網站
 
@@ -92,4 +92,4 @@ luhui/
 - **合法民宿編號**: No.1612
 
 ## 授權
-© 2024 蘆薈莊園 Aloe Villa. All rights reserved. 
+© 2025 蘆薈Villa Aloe Villa. All rights reserved. 

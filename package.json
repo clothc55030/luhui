@@ -1,7 +1,7 @@
 {
   "name": "aloe-villa-website",
   "version": "1.0.0",
-  "description": "蘆薈莊園民宿官網 - 宜蘭五結清水模工業風民宿",
+  "description": "蘆薈Villa民宿官網 - 宜蘭五結清水模工業風民宿",
   "main": "index.html",
   "scripts": {
     "build-css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
