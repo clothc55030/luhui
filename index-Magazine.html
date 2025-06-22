@@ -526,16 +526,20 @@
         });
 
         // Enhanced Navbar background on scroll for magazine style
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('bg-white');
+        const nav = document.querySelector('nav');
+        const handleNavScroll = () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white', 'shadow-lg');
                 nav.classList.remove('bg-white/95');
             } else {
                 nav.classList.add('bg-white/95');
-                nav.classList.remove('bg-white');
+                nav.classList.remove('bg-white', 'shadow-lg');
             }
-        });
+        };
+
+        window.addEventListener('scroll', handleNavScroll);
+        // Run on load as well
+        document.addEventListener('DOMContentLoaded', handleNavScroll);
 
         // Magazine Card Hover Effects
         document.querySelectorAll('.magazine-card').forEach(card => {
