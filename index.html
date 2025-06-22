@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="蘆薈莊園 - 宜蘭五結清水模工業風民宿，座落稻田間，大片落地窗設計，提供包棟服務，適合好友家族入住">
+    <meta name="author" content="蘆薈莊園 Aloe Villa">
+    <meta property="og:title" content="蘆薈莊園 | 宜蘭五結清水模工業風民宿">
+    <meta property="og:description" content="座落於稻田間的清水模工業風民宿，大片落地窗與透明天井設計，室內搭配原木與植栽，營造放鬆親近自然的住宿氛圍">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aloevilla-bnb.com">
+    <meta property="og:image" content="https://aloevilla-bnb.com/images/hero.jpg">
+    
+    <title>蘆薈莊園 | 宜蘭五結清水模工業風民宿 - 包棟住宿首選</title>
+    
+    <!-- Preload Hero Image for LCP -->
+    <link rel="preload" as="image" href="images/hero.jpg" type="image/jpeg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <link href="dist/output.css" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-primary-50 font-noto text-primary-700 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <h1 class="font-playfair text-xl font-bold text-primary-800">蘆薈莊園</h1>
+                    <p class="text-xs text-primary-500 -mt-1">ALOE VILLA</p>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-primary-800 hover:text-accent-blue transition-colors duration-300 font-medium">首頁</a>
+                        <a href="intro.html" class="text-primary-600 hover:text-accent-blue transition-colors duration-300">關於我們</a>
+                        <a href="rooms.html" class="text-primary-600 hover:text-accent-blue transition-colors duration-300">房型設施</a>
+                        <a href="location.html" class="text-primary-600 hover:text-accent-blue transition-colors duration-300">交通位置</a>
+                        <a href="reviews.html" class="text-primary-600 hover:text-accent-blue transition-colors duration-300">旅客評價</a>
+                        <a href="tel:0900776585" class="bg-accent-orange text-white px-4 py-2 rounded-lg hover:bg-accent-orange/90 transition-all duration-300 font-medium">立即訂房</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-primary-600 hover:text-primary-800 transition-colors duration-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-primary-200">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-primary-800 font-medium">首頁</a>
+                    <a href="intro.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">關於我們</a>
+                    <a href="rooms.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">房型設施</a>
+                    <a href="location.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">交通位置</a>
+                    <a href="reviews.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">旅客評價</a>
+                    <a href="tel:0900776585" class="block mx-3 my-2 text-center bg-accent-orange text-white px-4 py-2 rounded-lg">立即訂房</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="images/hero.jpg" alt="蘆薈莊園外觀 - 清水模工業風建築座落於宜蘭稻田間" 
+                 class="w-full h-full object-cover" width="1920" height="1080">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center lg:text-left">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div class="animate-slide-in-left">
+                    <h1 class="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                        蘆薈莊園
+                        <span class="block text-2xl sm:text-3xl lg:text-4xl font-normal text-primary-100 mt-2">
+                            清水模工業風民宿
+                        </span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-primary-100 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                        座落於宜蘭稻田間，採清水模設計搭配大片落地窗，<br>
+                        室內融合原木與植栽元素，<br>
+                        營造放鬆親近自然的住宿體驗
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="rooms.html" class="bg-accent-orange text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-accent-orange/90 transition-all duration-300 transform hover:scale-105">
+                            探索房型
+                        </a>
+                        <a href="tel:0900776585" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-white hover:text-primary-800 transition-all duration-300">
+                            立即訂房
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-primary-800 mb-4">
+                    清水模工業風設計
+                </h2>
+                <p class="text-lg text-primary-600 max-w-2xl mx-auto">
+                    座落於宜蘭稻田間的獨特民宿，融合現代工業風與自然元素，營造溫潤舒適的住宿環境
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-accent-blue/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-playfair text-xl font-semibold text-primary-800 mb-4">清水模建築</h3>
+                    <p class="text-primary-600">純樸的清水模外觀，搭配大片落地窗設計，引入自然光線與田園景致</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-accent-orange/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-accent-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-playfair text-xl font-semibold text-primary-800 mb-4">透明天井</h3>
+                    <p class="text-primary-600">特色透明天井設計，讓室內空間更加明亮通透，與自然環境完美融合</p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-accent-wood/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 text-accent-wood" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-playfair text-xl font-semibold text-primary-800 mb-4">原木植栽</h3>
+                    <p class="text-primary-600">室內搭配天然原木家具與綠色植栽，營造溫馨自然的居住氛圍</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Preview Section -->
+    <section class="py-20 bg-primary-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-primary-800 mb-4">
+                    精選房型
+                </h2>
+                <p class="text-lg text-primary-600 max-w-2xl mx-auto">
+                    從雙人浪漫住宿到十人包棟專案，滿足不同旅客需求
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Room 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+                        <img src="images/room-dominica.jpg" alt="多明尼加二人房" class="w-full h-48 object-cover" width="400" height="300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-primary-800 mb-2">多明尼加二人房</h3>
+                        <p class="text-primary-600 mb-4">約 9.1 坪 • 適合 2 人入住</p>
+                        <p class="text-sm text-primary-500 mb-4">溫馨雙人空間，配備完整生活機能</p>
+                        <a href="rooms.html#dominica" class="text-accent-blue hover:text-accent-blue/80 font-medium transition-colors">查看詳情 →</a>
+                    </div>
+                </div>
+                
+                <!-- Room 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+                        <img src="images/room-arizona.jpg" alt="亞歷桑那VIP四人房" class="w-full h-48 object-cover" width="400" height="300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-primary-800 mb-2">亞歷桑那VIP四人房</h3>
+                        <p class="text-primary-600 mb-4">約 15.1 坪 • 適合 4 人入住</p>
+                        <p class="text-sm text-primary-500 mb-4">寬敞VIP房型，享受頂級住宿體驗</p>
+                        <a href="rooms.html#arizona" class="text-accent-blue hover:text-accent-blue/80 font-medium transition-colors">查看詳情 →</a>
+                    </div>
+                </div>
+                
+                <!-- Room 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                    <div class="aspect-w-4 aspect-h-3 overflow-hidden">
+                        <img src="images/room-grande.jpg" alt="格蘭德河谷四人房" class="w-full h-48 object-cover" width="400" height="300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-primary-800 mb-2">格蘭德河谷四人房</h3>
+                        <p class="text-primary-600 mb-4">約 15.1 坪 • 適合 4 人入住</p>
+                        <p class="text-sm text-primary-500 mb-4">河谷主題設計，享受自然氛圍</p>
+                        <a href="rooms.html#grande" class="text-accent-blue hover:text-accent-blue/80 font-medium transition-colors">查看詳情 →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                <a href="rooms.html" class="bg-accent-orange text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-accent-orange/90 transition-all duration-300 transform hover:scale-105">
+                    查看所有房型
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-primary-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div data-aos="fade-up">
+                <h2 class="font-playfair text-3xl sm:text-4xl font-bold mb-6">
+                    立即預訂您的完美假期
+                </h2>
+                <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+                    包棟專案最多可容納 10 人，適合好友聚會或家族旅遊
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
+                    <a href="tel:0900776585" class="flex items-center gap-3 text-lg hover:text-accent-orange transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        0900-776-585
+                    </a>
+                    <span class="text-primary-300">|</span>
+                    <p class="text-primary-200">服務時間：09:00-22:00</p>
+                </div>
+                <a href="tel:0900776585" class="bg-accent-orange text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-accent-orange/90 transition-all duration-300 transform hover:scale-105 inline-block">
+                    立即致電訂房
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="font-playfair text-2xl font-bold mb-4">蘆薈莊園</h3>
+                    <p class="text-primary-300 mb-4 leading-relaxed">
+                        座落於宜蘭稻田間的清水模工業風民宿，提供溫馨舒適的住宿環境，讓您遠離城市喧囂，享受純樸的鄉村生活。
+                    </p>
+                    <p class="text-sm text-primary-400">合法民宿編號：No.1612</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">聯絡資訊</h4>
+                    <div class="space-y-2 text-primary-300">
+                        <p class="text-sm">宜蘭縣五結鄉三吉中路52巷15弄26號</p>
+                        <p class="text-sm">電話：0900-776-585</p>
+                        <p class="text-sm">Line：@nfu4410b</p>
+                        <p class="text-sm">WhatsApp：0912-590-321</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-4">快速連結</h4>
+                    <div class="space-y-2 text-primary-300">
+                        <a href="intro.html" class="block text-sm hover:text-white transition-colors">關於我們</a>
+                        <a href="rooms.html" class="block text-sm hover:text-white transition-colors">房型設施</a>
+                        <a href="location.html" class="block text-sm hover:text-white transition-colors">交通位置</a>
+                        <a href="reviews.html" class="block text-sm hover:text-white transition-colors">旅客評價</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-primary-700 mt-12 pt-8 text-center">
+                <p class="text-primary-400 text-sm">
+                    © 2024 蘆薈莊園 Aloe Villa. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white');
+                nav.classList.remove('bg-white/95');
+            } else {
+                nav.classList.add('bg-white/95');
+                nav.classList.remove('bg-white');
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,13 @@
+請將以下圖片放置於此目錄：
+
+必要圖片：
+- hero.webp / hero.avif - Hero 背景圖片 (1920x1080)
+- room-dominica.webp - 多明尼加二人房 (400x300)
+- room-arizona.webp - 亞歷桑那VIP四人房 (400x300)
+- room-grande.webp - 格蘭德河谷四人房 (400x300)
+
+圖片最佳化建議：
+- 主要格式：WebP (相容性) + AVIF (最佳壓縮)
+- Hero 圖片：1920x1080px，檔案大小 < 200KB
+- 房型圖片：400x300px，檔案大小 < 50KB
+- 添加適當的 alt 標籤以改善 SEO 

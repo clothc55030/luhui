@@ -1,0 +1,23 @@
+{
+  "name": "aloe-villa-website",
+  "version": "1.0.0",
+  "description": "蘆薈莊園民宿官網 - 宜蘭五結清水模工業風民宿",
+  "main": "index.html",
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "keywords": [
+    "民宿",
+    "宜蘭",
+    "清水模",
+    "工業風",
+    "包棟"
+  ],
+  "author": "Aloe Villa",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
