@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蘆薈Villa | 卡片堆疊 - 宜蘭五結清水模工業風民宿</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <link href="dist/output.css" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom Stack Styles -->
+    <style>
+        .stack-container {
+            perspective: 1000px;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-stack {
+            position: relative;
+            width: 300px;
+            height: 400px;
+        }
+        
+        .stack-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backface-visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .stack-card:nth-child(1) {
+            z-index: 3;
+            transform: translateZ(0) rotateY(0deg);
+        }
+        
+        .stack-card:nth-child(2) {
+            z-index: 2;
+            transform: translateZ(-50px) rotateY(-5deg) translateX(20px);
+        }
+        
+        .stack-card:nth-child(3) {
+            z-index: 1;
+            transform: translateZ(-100px) rotateY(-10deg) translateX(40px);
+        }
+        
+
+        
+        .floating-stack {
+            animation: float-stack 4s ease-in-out infinite;
+        }
+        
+        @keyframes float-stack {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .room-stack {
+            position: relative;
+            height: 500px;
+            margin: 2rem 0;
+        }
+        
+        .room-card {
+            position: absolute;
+            width: 100%;
+            max-width: 350px;
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        
+        .room-card:nth-child(1) {
+            z-index: 3;
+            left: 0;
+            transform: rotate(-2deg);
+        }
+        
+        .room-card:nth-child(2) {
+            z-index: 2;
+            left: 250px;
+            top: 50px;
+            transform: rotate(3deg);
+        }
+        
+        .room-card:nth-child(3) {
+            z-index: 1;
+            left: 500px;
+            top: -30px;
+            transform: rotate(-1deg);
+        }
+        
+        .room-card:hover {
+            z-index: 10;
+            transform: rotate(0deg) scale(1.1);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+        }
+        
+        .parallax-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .layer-1 { transform: translateZ(-300px) scale(4); }
+        .layer-2 { transform: translateZ(-200px) scale(3); }
+        .layer-3 { transform: translateZ(-100px) scale(2); }
+        
+        @media (max-width: 1024px) {
+            .room-card:nth-child(1) { left: 0; top: 0; }
+            .room-card:nth-child(2) { left: 0; top: 200px; }
+            .room-card:nth-child(3) { left: 0; top: 400px; }
+            .room-stack { height: 650px; }
+        }
+    </style>
+</head>
+<body class="bg-primary-50 font-noto text-primary-700 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="font-playfair text-xl font-bold text-primary-800">蘆薈Villa</h1>
+                    <p class="text-xs text-accent-orange -mt-1 font-medium">STACK EDITION</p>
+                </div>
+                
+                <div class="hidden md:flex items-baseline space-x-8">
+                    <a href="#home" class="text-primary-800 hover:text-accent-blue font-medium">首頁</a>
+                    <a href="rooms.html" class="text-primary-600 hover:text-accent-blue">房型設施</a>
+                    <!-- Style Selector Dropdown -->
+                    <div class="relative group">
+                        <button class="flex items-center gap-2 text-primary-600 hover:text-accent-blue transition-colors duration-300 px-3 py-2 rounded-lg hover:bg-primary-50">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+                            </svg>
+                            <span class="text-sm font-medium">風格選擇</span>
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-primary-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <a href="index.html" class="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-50 rounded-t-lg">傳統風格</a>
+                            <a href="index-Magazine.html" class="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-50">雜誌風格</a>
+                            <a href="index-Waterfall.html" class="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-50">瀑布流佈局</a>
+                            <a href="index-Fullscreen.html" class="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-50">全螢幕滑動</a>
+                            <a href="index-Asymmetric.html" class="block px-4 py-2 text-sm text-primary-700 hover:bg-primary-50">非對稱佈局</a>
+                            <span class="block px-4 py-2 text-sm text-accent-orange font-medium bg-accent-orange/10 rounded-b-lg">卡片堆疊</span>
+                        </div>
+                    </div>
+                    <a href="tel:0900776585" class="bg-accent-orange text-white px-4 py-2 rounded-lg hover:bg-accent-orange/90 font-medium">立即訂房</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-primary-600 hover:text-primary-800 transition-colors duration-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-primary-200">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-primary-800 font-medium">首頁</a>
+                    <a href="rooms.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">房型設施</a>
+                    <!-- Mobile Style Options -->
+                    <div class="border-t border-primary-200 mt-2 pt-2">
+                        <p class="px-3 py-1 text-xs text-primary-500 font-medium">風格選擇</p>
+                        <a href="index.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">傳統風格</a>
+                        <a href="index-Magazine.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">雜誌風格</a>
+                        <a href="index-Waterfall.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">瀑布流佈局</a>
+                        <a href="index-Fullscreen.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">全螢幕滑動</a>
+                        <a href="index-Asymmetric.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">非對稱佈局</a>
+                        <span class="block px-3 py-2 text-accent-orange font-medium bg-accent-orange/10">✓ 卡片堆疊</span>
+                    </div>
+                    <a href="tel:0900776585" class="block mx-3 my-2 text-center bg-accent-orange text-white px-4 py-2 rounded-lg">立即訂房</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Stacked Cards -->
+    <section id="home" class="relative min-h-screen overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="images/hero.jpg" alt="蘆薈Villa外觀" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-800/80 to-accent-orange/60"></div>
+        </div>
+        
+        <div class="relative z-10 min-h-screen flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <!-- Left Side - Title -->
+                    <div data-aos="fade-right">
+                        <h1 class="font-playfair text-7xl font-black text-white mb-8">
+                            蘆薈<br>
+                            <span class="text-accent-orange">Villa</span>
+                        </h1>
+                        <p class="text-3xl text-primary-100 mb-8">
+                            層層堆疊的<br>
+                            住宿體驗
+                        </p>
+                        <p class="text-xl text-primary-200 mb-12 max-w-lg">
+                            如卡片般精心堆疊的設計元素，每一層都是獨特的故事與體驗
+                        </p>
+                        <div class="flex gap-6">
+                            <a href="rooms.html" class="bg-white text-primary-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-primary-100 transform hover:scale-105 transition-all">
+                                探索房型
+                            </a>
+                            <a href="tel:0900776585" class="bg-transparent border-3 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-primary-800 transition-all">
+                                立即預訂
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Stacked Info Cards -->
+                    <div class="stack-container" data-aos="fade-left">
+                        <div class="card-stack floating-stack">
+                            <div class="stack-card">
+                                <img src="images/hero.jpg" alt="清水模建築" class="w-full h-48 object-cover rounded-t-lg">
+                                <div class="p-6">
+                                    <h3 class="font-playfair text-2xl font-bold text-primary-800 mb-4">清水模工業風</h3>
+                                    <p class="text-primary-600 leading-relaxed">
+                                        座落於宜蘭稻田間的獨特建築，融合現代工業風與自然元素
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="stack-card">
+                                <div class="p-6 h-full bg-gradient-to-br from-accent-blue to-accent-blue/80 text-white flex flex-col justify-center">
+                                    <h3 class="font-playfair text-2xl font-bold mb-4">透明天井設計</h3>
+                                    <p class="leading-relaxed mb-6">
+                                        特色透明天井讓自然光線充滿整個空間，營造明亮通透的居住體驗
+                                    </p>
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto">
+                                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stack-card">
+                                <div class="p-6 h-full bg-gradient-to-br from-accent-orange to-accent-orange/80 text-white flex flex-col justify-center">
+                                    <h3 class="font-playfair text-2xl font-bold mb-4">包棟服務</h3>
+                                    <p class="leading-relaxed mb-6">
+                                        最多可容納10人的包棟專案，適合好友聚會、家族旅遊
+                                    </p>
+                                    <div class="grid grid-cols-2 gap-4 text-center">
+                                        <div>
+                                            <div class="text-2xl font-black">10</div>
+                                            <div class="text-sm opacity-90">最大容納</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-2xl font-black">3</div>
+                                            <div class="text-sm opacity-90">房型選擇</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stacked Features Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-playfair text-5xl font-black text-primary-800 mb-8">設計特色</h2>
+                <p class="text-xl text-primary-600 max-w-2xl mx-auto">
+                    層層堆疊的設計理念，創造出豐富的視覺層次
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Feature 1 -->
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-accent-blue/20 rounded-full mx-auto mb-4 transform rotate-12"></div>
+                        <div class="w-20 h-20 bg-accent-blue rounded-full mx-auto absolute top-2 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-bold text-primary-800 mb-4">清水模建築</h3>
+                    <p class="text-primary-600 leading-relaxed">
+                        純樸的清水模外觀，搭配大片落地窗設計，引入自然光線與田園景致
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-accent-orange/20 rounded-full mx-auto mb-4 transform -rotate-12"></div>
+                        <div class="w-20 h-20 bg-accent-orange rounded-full mx-auto absolute top-2 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-bold text-primary-800 mb-4">透明天井</h3>
+                    <p class="text-primary-600 leading-relaxed">
+                        特色透明天井設計，讓室內空間更加明亮通透，與自然環境完美融合
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-accent-wood/20 rounded-full mx-auto mb-4 transform rotate-6"></div>
+                        <div class="w-20 h-20 bg-accent-wood rounded-full mx-auto absolute top-2 left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-playfair text-2xl font-bold text-primary-800 mb-4">原木植栽</h3>
+                    <p class="text-primary-600 leading-relaxed">
+                        室內搭配天然原木家具與綠色植栽，營造溫馨自然的居住氛圍
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stacked Rooms Section -->
+    <section class="py-20 bg-primary-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-playfair text-5xl font-black text-primary-800 mb-8">房型展示</h2>
+                <p class="text-xl text-primary-600 max-w-2xl mx-auto">
+                    三張卡片，三種不同的住宿體驗
+                </p>
+            </div>
+            
+            <div class="room-stack max-w-6xl mx-auto" data-aos="fade-up">
+                <!-- Room 1 -->
+                <div class="room-card">
+                    <img src="images/room-dominica.jpg" alt="多明尼加二人房" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-playfair text-2xl font-bold text-primary-800 mb-3">多明尼加二人房</h3>
+                        <p class="text-primary-600 mb-4">約 9.1 坪 • 適合 2 人入住</p>
+                        <p class="text-primary-500 mb-6">溫馨雙人空間，配備完整生活機能，適合情侶或夫妻入住</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-accent-blue">2人房</span>
+                            <a href="rooms.html#dominica" class="bg-accent-blue text-white px-6 py-3 rounded-lg font-medium hover:bg-accent-blue/90 transition-colors">
+                                查看詳情
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Room 2 -->
+                <div class="room-card">
+                    <img src="images/room-arizona.jpg" alt="亞歷桑那VIP四人房" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-playfair text-2xl font-bold text-primary-800">亞歷桑那VIP四人房</h3>
+                            <span class="bg-accent-orange text-white px-3 py-1 rounded-full text-sm font-bold">VIP</span>
+                        </div>
+                        <p class="text-primary-600 mb-4">約 15.1 坪 • 適合 4 人入住</p>
+                        <p class="text-primary-500 mb-6">寬敞VIP房型，享受頂級住宿體驗，配備高級設施</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-accent-orange">4人房</span>
+                            <a href="rooms.html#arizona" class="bg-accent-orange text-white px-6 py-3 rounded-lg font-medium hover:bg-accent-orange/90 transition-colors">
+                                查看詳情
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Room 3 -->
+                <div class="room-card">
+                    <img src="images/room-grande.jpg" alt="格蘭德河谷四人房" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-playfair text-2xl font-bold text-primary-800 mb-3">格蘭德河谷四人房</h3>
+                        <p class="text-primary-600 mb-4">約 15.1 坪 • 適合 4 人入住</p>
+                        <p class="text-primary-500 mb-6">河谷主題設計，享受自然氛圍，感受大自然的寧靜</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-black text-accent-wood">4人房</span>
+                            <a href="rooms.html#grande" class="bg-accent-wood text-white px-6 py-3 rounded-lg font-medium hover:bg-accent-wood/90 transition-colors">
+                                查看詳情
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-primary-800 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="images/hero.jpg" alt="背景" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <div data-aos="fade-up">
+                <h2 class="font-playfair text-6xl font-black mb-8">立即預訂</h2>
+                <p class="text-2xl mb-12 opacity-90">堆疊您的美好回憶</p>
+                
+                <!-- Contact Information Grid -->
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+                    <!-- Contact Info -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold mb-6 text-center">聯絡資訊</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-accent-orange rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-sm">宜蘭縣五結鄉三吉中路52巷15弄26號</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-accent-blue rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-sm">每日 09:00 - 22:00</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 bg-accent-wood rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-sm">合法民宿編號：No.1612</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Methods -->
+                    <div class="bg-white/15 backdrop-blur-sm rounded-2xl p-6 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold mb-6 text-center">聯絡方式</h3>
+                        <div class="space-y-4">
+                            <a href="tel:0900776585" class="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors group">
+                                <div class="w-8 h-8 bg-accent-orange rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">電話</p>
+                                    <p class="text-sm opacity-90">0900-776-585</p>
+                                </div>
+                            </a>
+                            <div class="flex items-center gap-3 p-3 bg-white/10 rounded-lg">
+                                <div class="w-8 h-8 bg-accent-blue rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Line</p>
+                                    <p class="text-sm opacity-90">@nfu4410b</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-white/10 rounded-lg">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="font-medium">WhatsApp</p>
+                                    <p class="text-sm opacity-90">0912-590-321</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="tel:0900776585" class="inline-block bg-accent-orange text-white px-12 py-6 rounded-full text-2xl font-bold hover:bg-accent-orange/90 transform hover:scale-105 transition-all shadow-2xl">
+                    立即致電訂房
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="font-playfair text-2xl font-bold mb-4">蘆薈Villa</h3>
+            <p class="text-primary-400 text-sm">© 2025 蘆薈Villa Aloe Villa. All rights reserved. - Stack Edition</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Stack cards are now display-only, no interaction needed
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
