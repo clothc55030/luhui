@@ -20,9 +20,15 @@
     <style>
         .asymmetric-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: 1fr;
             gap: 2rem;
-            min-height: 100vh;
+        }
+
+        @media (min-width: 1024px) {
+            .asymmetric-grid {
+                grid-template-columns: repeat(12, 1fr);
+                min-height: 100vh;
+            }
         }
         
         .asymmetric-hero {
@@ -165,16 +171,16 @@
             <div class="absolute inset-0 diagonal-section bg-gradient-to-br from-primary-800/90 to-transparent"></div>
         </div>
         
-        <div class="relative z-10 min-h-screen">
+        <div class="relative z-10 min-h-screen flex items-center">
             <div class="asymmetric-grid max-w-7xl mx-auto px-4 py-20 items-center">
                 <!-- Large Title Area -->
-                <div class="col-span-12 lg:col-span-7 lg:col-start-1" data-aos="fade-right">
-                    <h1 class="font-playfair text-7xl lg:text-9xl font-black text-white mb-8 leading-none">
+                <div class="col-span-12 lg:col-span-7 lg:col-start-1 text-center lg:text-left" data-aos="fade-right">
+                    <h1 class="font-playfair text-6xl md:text-7xl lg:text-9xl font-black text-white mb-8 leading-none">
                         蘆薾<br>
-                        <span class="text-accent-orange ml-16">Villa</span>
+                        <span class="text-accent-orange md:ml-16">Villa</span>
                     </h1>
-                    <div class="ml-8">
-                        <p class="text-2xl text-primary-100 mb-8 max-w-lg">
+                    <div class="md:ml-8">
+                        <p class="text-xl md:text-2xl text-primary-100 mb-8 max-w-lg mx-auto lg:mx-0">
                             打破對稱的束縛<br>
                             擁抱不規則的美學
                         </p>
@@ -190,7 +196,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-accent-orange p-6 -skew-element text-white ml-12 shadow-2xl">
+                    <div class="bg-accent-orange p-6 -skew-element text-white md:ml-12 shadow-2xl">
                         <div class="unskew-content">
                             <h3 class="font-playfair text-xl font-bold mb-3">工業風設計</h3>
                             <p>現代與自然的完美融合</p>
@@ -211,30 +217,30 @@
     <!-- Asymmetric Features Section -->
     <section class="py-20 bg-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="asymmetric-grid items-center">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <!-- Feature Text -->
-                <div class="col-span-12 lg:col-span-5 lg:col-start-2" data-aos="fade-right">
-                    <h2 class="font-playfair text-5xl font-black text-primary-800 mb-8 transform -rotate-2">
+                <div class="order-2 lg:order-1" data-aos="fade-right">
+                    <h2 class="font-playfair text-4xl md:text-5xl font-black text-primary-800 mb-8 transform -rotate-2">
                         設計特色
                     </h2>
                     
                     <div class="space-y-8">
                         <div class="border-l-4 border-accent-orange pl-6 transform rotate-1">
-                            <h3 class="text-2xl font-bold text-primary-800 mb-3">清水模建築</h3>
+                            <h3 class="text-xl md:text-2xl font-bold text-primary-800 mb-3">清水模建築</h3>
                             <p class="text-primary-600 leading-relaxed">
                                 純樸的清水模外觀，搭配不規則的窗戶配置，創造獨特的光影效果
                             </p>
                         </div>
                         
                         <div class="border-l-4 border-accent-blue pl-6 transform -rotate-1">
-                            <h3 class="text-2xl font-bold text-primary-800 mb-3">透明天井</h3>
+                            <h3 class="text-xl md:text-2xl font-bold text-primary-800 mb-3">透明天井</h3>
                             <p class="text-primary-600 leading-relaxed">
                                 非對稱的透明天井設計，讓自然光線以意想不到的角度進入空間
                             </p>
                         </div>
                         
                         <div class="border-l-4 border-accent-wood pl-6 transform rotate-1">
-                            <h3 class="text-2xl font-bold text-primary-800 mb-3">原木植栽</h3>
+                            <h3 class="text-xl md:text-2xl font-bold text-primary-800 mb-3">原木植栽</h3>
                             <p class="text-primary-600 leading-relaxed">
                                 不對稱擺放的原木家具與植栽，營造自然隨性的居住氛圍
                             </p>
@@ -243,11 +249,11 @@
                 </div>
                 
                 <!-- Asymmetric Image Layout -->
-                <div class="col-span-12 lg:col-span-6 lg:col-start-7" data-aos="fade-left">
+                <div class="order-1 lg:order-2" data-aos="fade-left">
                     <div class="relative">
                         <img src="images/hero.jpg" alt="蘆薈Villa設計" class="w-full h-96 object-cover irregular-border shadow-2xl transform rotate-3">
-                        <div class="absolute -top-8 -left-8 w-32 h-32 bg-accent-orange irregular-border opacity-80"></div>
-                        <div class="absolute -bottom-8 -right-8 w-24 h-24 bg-accent-blue irregular-border opacity-60"></div>
+                        <div class="absolute -top-4 -left-4 w-24 h-24 md:-top-8 md:-left-8 md:w-32 md:h-32 bg-accent-orange irregular-border opacity-80"></div>
+                        <div class="absolute -bottom-4 -right-4 w-20 h-20 md:-bottom-8 md:-right-8 md:w-24 md:h-24 bg-accent-blue irregular-border opacity-60"></div>
                     </div>
                 </div>
             </div>
@@ -258,32 +264,32 @@
     <section class="py-20 bg-primary-50 relative zigzag-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="font-playfair text-5xl font-black text-primary-800 mb-8 transform rotate-2">
+                <h2 class="font-playfair text-4xl md:text-5xl font-black text-primary-800 mb-8 transform rotate-2">
                     房型介紹
                 </h2>
-                <p class="text-xl text-primary-600 max-w-2xl mx-auto">
+                <p class="text-lg md:text-xl text-primary-600 max-w-2xl mx-auto">
                     每個房間都有獨特的非對稱設計語言
                 </p>
             </div>
             
-            <div class="asymmetric-grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
                 <!-- Room 1 - Large -->
-                <div class="col-span-12 lg:col-span-8 lg:col-start-1" data-aos="zoom-in">
+                <div class="md:col-span-2 lg:col-span-2" data-aos="zoom-in">
                     <div class="bg-white rounded-3xl overflow-hidden shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-500">
                         <div class="lg:flex">
                             <div class="lg:w-3/5">
                                 <img src="images/room-arizona.jpg" alt="亞歷桑那VIP四人房" class="w-full h-64 lg:h-full object-cover">
                             </div>
-                            <div class="lg:w-2/5 p-8 flex flex-col justify-center">
+                            <div class="lg:w-2/5 p-6 md:p-8 flex flex-col justify-center">
                                 <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="font-playfair text-2xl font-bold text-primary-800">亞歷桑那VIP</h3>
+                                    <h3 class="font-playfair text-xl md:text-2xl font-bold text-primary-800">亞歷桑那VIP</h3>
                                     <span class="bg-accent-orange text-white px-3 py-1 rounded-full text-sm font-bold transform rotate-12">VIP</span>
                                 </div>
-                                <p class="text-primary-600 mb-4">15.1坪寬敞VIP房型，採用不對稱家具配置</p>
+                                <p class="text-primary-600 mb-4 text-sm md:text-base">15.1坪寬敞VIP房型，採用不對稱家具配置</p>
                                 <div class="flex items-center justify-between">
-                                    <span class="text-2xl font-black text-accent-orange">4人房</span>
-                                    <a href="rooms.html#arizona" class="bg-accent-orange text-white px-6 py-3 skew-element hover:bg-accent-orange/90 transition-colors">
-                                        <span class="unskew-content font-medium">查看詳情</span>
+                                    <span class="text-xl md:text-2xl font-black text-accent-orange">4人房</span>
+                                    <a href="rooms.html#arizona" class="bg-accent-orange text-white px-4 py-2 md:px-6 md:py-3 skew-element hover:bg-accent-orange/90 transition-colors">
+                                        <span class="unskew-content font-medium text-sm md:text-base">查看詳情</span>
                                     </a>
                                 </div>
                             </div>
@@ -292,7 +298,7 @@
                 </div>
                 
                 <!-- Room 2 - Medium -->
-                <div class="col-span-12 lg:col-span-4 lg:col-start-9" data-aos="zoom-in" data-aos-delay="200">
+                <div data-aos="zoom-in" data-aos-delay="200">
                     <div class="bg-white rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500 h-full">
                         <img src="images/room-dominica.jpg" alt="多明尼加二人房" class="w-full h-48 object-cover">
                         <div class="p-6">
@@ -309,7 +315,7 @@
                 </div>
                 
                 <!-- Room 3 - Medium -->
-                <div class="col-span-12 lg:col-span-4 lg:col-start-2" data-aos="zoom-in" data-aos-delay="400">
+                <div data-aos="zoom-in" data-aos-delay="400">
                     <div class="bg-white rounded-2xl overflow-hidden shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                         <img src="images/room-grande.jpg" alt="格蘭德河谷四人房" class="w-full h-48 object-cover">
                         <div class="p-6">
@@ -326,25 +332,25 @@
                 </div>
                 
                 <!-- Stats Card -->
-                <div class="col-span-12 lg:col-span-6 lg:col-start-7" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="bg-gradient-to-br from-primary-800 to-primary-700 text-white p-8 skew-element shadow-2xl">
+                <div class="md:col-span-2 lg:col-span-1" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="bg-gradient-to-br from-primary-800 to-primary-700 text-white p-8 skew-element shadow-2xl h-full">
                         <div class="unskew-content">
-                            <h3 class="font-playfair text-3xl font-bold mb-8">住宿數據</h3>
-                            <div class="grid grid-cols-2 gap-8">
+                            <h3 class="font-playfair text-2xl md:text-3xl font-bold mb-8">住宿數據</h3>
+                            <div class="grid grid-cols-2 gap-4 md:gap-8">
                                 <div class="text-center">
-                                    <div class="text-4xl font-black text-accent-orange mb-2">10</div>
+                                    <div class="text-3xl md:text-4xl font-black text-accent-orange mb-2">10</div>
                                     <div class="text-sm opacity-90">最大容納人數</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-4xl font-black text-accent-blue mb-2">3</div>
+                                    <div class="text-3xl md:text-4xl font-black text-accent-blue mb-2">3</div>
                                     <div class="text-sm opacity-90">精選房型</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-4xl font-black text-accent-wood mb-2">24</div>
+                                    <div class="text-3xl md:text-4xl font-black text-accent-wood mb-2">24</div>
                                     <div class="text-sm opacity-90">小時服務</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-4xl font-black text-white mb-2">1612</div>
+                                    <div class="text-3xl md:text-4xl font-black text-white mb-2">1612</div>
                                     <div class="text-sm opacity-90">合法編號</div>
                                 </div>
                             </div>
@@ -357,15 +363,15 @@
 
     <!-- Asymmetric Contact Section -->
     <section class="py-20 bg-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full reverse-diagonal bg-accent-orange opacity-10"></div>
+        <div class="absolute top-0 right-0 w-1/3 h-full reverse-diagonal bg-accent-orange opacity-10 hidden lg:block"></div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="asymmetric-grid items-center">
-                <div class="col-span-12 lg:col-span-6 lg:col-start-1" data-aos="fade-right">
-                    <h2 class="font-playfair text-6xl font-black text-primary-800 mb-8 transform -rotate-3">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="font-playfair text-4xl md:text-6xl font-black text-primary-800 mb-8 transform -rotate-3">
                         立即預訂
                     </h2>
-                    <p class="text-2xl text-primary-600 mb-8 max-w-lg">
+                    <p class="text-xl md:text-2xl text-primary-600 mb-8 max-w-lg">
                         不對稱的美，對稱的服務品質
                     </p>
                     
@@ -378,7 +384,7 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <div class="font-bold text-primary-800">0900-776-585</div>
+                                    <div class="font-bold text-primary-800 text-lg md:text-base">0900-776-585</div>
                                     <div class="text-sm text-primary-500">服務時間 09:00-22:00</div>
                                 </div>
                             </div>
@@ -401,9 +407,9 @@
                     </div>
                 </div>
                 
-                <div class="col-span-12 lg:col-span-5 lg:col-start-8" data-aos="fade-left">
+                <div data-aos="fade-left">
                     <div class="text-center">
-                        <a href="tel:0900776585" class="inline-block bg-accent-orange text-white px-12 py-6 skew-element text-xl font-bold hover:bg-accent-orange/90 transform hover:scale-105 transition-all shadow-2xl">
+                        <a href="tel:0900776585" class="inline-block bg-accent-orange text-white px-8 py-4 md:px-12 md:py-6 skew-element text-lg md:text-xl font-bold hover:bg-accent-orange/90 transform hover:scale-105 transition-all shadow-2xl">
                             <span class="unskew-content">立即致電訂房</span>
                         </a>
                         
@@ -420,8 +426,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-primary-900 text-white py-12 skew-element">
-        <div class="unskew-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <footer class="bg-primary-900 text-white py-12 md:skew-element">
+        <div class="md:unskew-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="font-playfair text-2xl font-bold mb-4">蘆薈Villa</h3>
             <p class="text-primary-400 text-sm">© 2025 蘆薈Villa Aloe Villa. All rights reserved. - Asymmetric Edition</p>
         </div>
