@@ -129,6 +129,35 @@
                     </div>
                     <a href="tel:0900776585" class="bg-accent-orange text-white px-4 py-2 rounded-lg hover:bg-accent-orange/90 font-medium">立即訂房</a>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-primary-600 hover:text-primary-800 transition-colors duration-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-primary-200">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="#home" class="block px-3 py-2 text-primary-800 font-medium">首頁</a>
+                    <a href="intro.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">關於我們</a>
+                    <a href="rooms.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">房型設施</a>
+                    <!-- Mobile Style Options -->
+                    <div class="border-t border-primary-200 mt-2 pt-2">
+                        <p class="px-3 py-1 text-xs text-primary-500 font-medium">風格選擇</p>
+                        <a href="index.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">傳統風格</a>
+                        <a href="index-Magazine.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">雜誌風格</a>
+                        <span class="block px-3 py-2 text-accent-orange font-medium bg-accent-orange/10">✓ 瀑布流風格</span>
+                        <a href="index-Fullscreen.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">全螢幕滑動</a>
+                        <a href="index-Asymmetric.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">非對稱佈局</a>
+                        <a href="index-Stack.html" class="block px-3 py-2 text-primary-600 hover:text-accent-blue transition-colors">卡片堆疊</a>
+                    </div>
+                    <a href="tel:0900776585" class="block mx-3 my-2 text-center bg-accent-orange text-white px-4 py-2 rounded-lg">立即訂房</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -352,6 +381,26 @@
             easing: 'ease-in-out',
             once: true,
             offset: 100
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
